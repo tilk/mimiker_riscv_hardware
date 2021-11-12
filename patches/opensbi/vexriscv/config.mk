@@ -6,6 +6,8 @@ platform-cflags-y =
 platform-asflags-y =
 platform-ldflags-y =
 
+# RISC-V GCC options are described here:
+#   https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html#RISC-V-Options
 PLATFORM_RISCV_XLEN = 32
 PLATFORM_RISCV_ABI = ilp32
 PLATFORM_RISCV_ISA = rv32ima
