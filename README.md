@@ -1,4 +1,4 @@
-Mimiker RISC-V hadrware 
+Mimiker RISC-V hardware 
 =======================
 
 Description
