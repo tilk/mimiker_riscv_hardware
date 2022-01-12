@@ -38,8 +38,8 @@ def SoCMimiker(soc_cls, **kwargs):
             "timer0":     3,
         }}
         interrupt_map = {**soc_cls.interrupt_map, **{
-            "uart":       0,
-            "timer0":     1,
+            "uart":       1,
+            "timer0":     2,
         }}
         mem_map = {**soc_cls.mem_map, **{
             "csr":          0xf0000000,
@@ -64,7 +64,7 @@ def SoCMimiker(soc_cls, **kwargs):
             dts = os.path.join("build", board_name, "{}.dts".format(board_name))
 
             with open(json_src) as json_file, open(dts, "w") as dts_file:
-                dts_content = generate_dts(json.load(json_file), polling=False)
+                dts_content = generate_dts(json.load(json_file), polling=False, initrd_start=0x2000000, initrd_size=0x3000000)
                 dts_file.write(dts_content)
 
         # DTS compilation --------------------------------------------------------------------------
