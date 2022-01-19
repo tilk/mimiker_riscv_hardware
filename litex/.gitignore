@@ -1,0 +1,7 @@
+/build/
+/prog/
+/__pycache__/
+/images/Image
+/images/opensbi.bin
+/images/rootfs.cpio
+/images/rv32.dtb
