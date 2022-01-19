@@ -39,7 +39,7 @@ class Board:
         prog = self.platform.create_programmer()
         prog.flash(0, filename)
 
-# Icesugar Pro support ------------------------------------------------------------------------------------
+# Icesugar Pro support -----------------------------------------------------------------------------
 
 class IcesugarPro(Board):
     spiflash = W25Q256JV(Codes.READ_1_1_1)
@@ -61,12 +61,40 @@ class IcesugarPro(Board):
             #"spiflash",
         }, bitstream_ext=".bit")
 
+# Arty A7 support ----------------------------------------------------------------------------------
+
+class ArtyA7(Board):
+    spiflash = S25FL128L(Codes.READ_1_1_1)
+    def __init__(self):
+        from litex_boards.targets import arty
+        Board.__init__(self, arty.BaseSoC, soc_capabilities={
+            # Communication
+            "serial",
+            "ethernet",
+            # Storage
+            "spiflash",
+#            "sdcard",
+            # GPIOs
+#            "leds",
+#            "rgb_led",
+#            "switches",
+            # Buses
+#            "spi",
+#            "i2c",
+            # Monitoring
+#            "xadc",
+            # 7-Series specific
+#            "mmcm",
+#            "icap_bitstream",
+        }, bitstream_ext=".bit")
+
 #---------------------------------------------------------------------------------------------------
 # Build
 #---------------------------------------------------------------------------------------------------
 
 supported_boards = {
     "icesugar_pro":    IcesugarPro,
+    "arty_a7":         ArtyA7,
 }
 
 def main():
