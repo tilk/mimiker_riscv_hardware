@@ -5,3 +5,4 @@
 /images/opensbi.bin
 /images/rootfs.cpio
 /images/rv32.dtb
+clint.dtbo
