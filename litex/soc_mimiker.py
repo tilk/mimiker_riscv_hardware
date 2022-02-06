@@ -72,17 +72,17 @@ def SoCMimiker(soc_cls, **kwargs):
             dts = os.path.join("build", board_name, "{}.dts".format(board_name))
             dtb = os.path.join("build", board_name, "{}.dtb".format(board_name))
             subprocess.check_call(
-                "dtc {} -O dtb -o {} {}".format("-@" if symbols else "", dtb, dts), shell=True)
+                "dtc -@ -O dtb -o clint.dtbo clint.dts", shell=True)
+            subprocess.check_call(
+                "dtc -@ -O dtb -o {} {}".format(dtb, dts), shell=True)
 
         # DTB combination --------------------------------------------------------------------------
         def combine_dtb(self, board_name, overlays=""):
             dtb_in = os.path.join("build", board_name, "{}.dtb".format(board_name))
             dtb_out = os.path.join("images", "rv32.dtb")
-            if overlays == "":
-                shutil.copyfile(dtb_in, dtb_out)
-            else:
-                subprocess.check_call(
-                    "fdtoverlay -i {} -o {} {}".format(dtb_in, dtb_out, overlays), shell=True)
+            overlays += " clint.dtbo"
+            subprocess.check_call(
+                "fdtoverlay -i {} -o {} {}".format(dtb_in, dtb_out, overlays), shell=True)
 
         # REPL generation --------------------------------------------------------------------------
         def generate_repl(self, board_name):
