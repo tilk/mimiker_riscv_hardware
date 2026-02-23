@@ -15,7 +15,7 @@
 /*
  * PLIC parameters.
  */
-#define VEX_PLIC_ADDR		0xf1000000
+#define VEX_PLIC_ADDR		0xf0c00000
 #define VEX_PLIC_NUM_SOURCES	16
 #define VEX_HART_COUNT		1
 
