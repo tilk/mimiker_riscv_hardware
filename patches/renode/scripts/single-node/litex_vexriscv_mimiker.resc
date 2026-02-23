@@ -6,10 +6,11 @@ mach create $name
 machine LoadPlatformDescription @platforms/cpus/litex_vexriscv_mimiker.repl
 
 ### Launch script uses socket terminal integration for UARTs.
+showAnalyzer uart0
 
 $opensbi=@fw_jump.bin
 $kernel=@sys/mimiker.img
-$dtb=@sys/dts/litex-riscv.dtb
+$dtb=@launch.dtb
 $initrd=@initrd.cpio
 
 macro reset
